@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 4792230594444491800}
   - component: {fileID: 6401191214094981716}
   - component: {fileID: 2461913378344163100}
+  - component: {fileID: 6225211102313817637}
+  - component: {fileID: 5286814846065566846}
+  - component: {fileID: 8995929273102976476}
+  - component: {fileID: 1630089099622179788}
   m_Layer: 0
   m_Name: Player1_blockout
   m_TagString: Untagged
@@ -78,3 +82,70 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6225211102313817637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249567343800949599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8365b827e84748e79eafa996ac0aa6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim_name: 
+  length: 0
+--- !u!114 &5286814846065566846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249567343800949599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5936d6fa32a46a88351921f499366d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!114 &8995929273102976476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249567343800949599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6a6b578fc814a73969e3454e643724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboName: 
+  inputs:
+  - {fileID: 0}
+  comboAttack: {fileID: 0}
+  onInputted:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1630089099622179788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249567343800949599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9b53a61b07b41a392e342b856e0765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightKey: 0
+  heavyKey: 0
+  lightAttack: {fileID: 0}
+  heavyAttack: {fileID: 0}
+  combos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  comboLeeway: 0.2

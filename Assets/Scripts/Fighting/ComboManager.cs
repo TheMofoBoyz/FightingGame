@@ -9,9 +9,9 @@ using Fighting.ComboManager.Attack;
 namespace Fighting.ComboManager
 {
     public enum AttackType { light = 0, heavy = 1 }
-    [RequireComponent(typeof(ComboInput))]
-    [RequireComponent(typeof(Combo))]
-    [RequireComponent(typeof(Attack))]
+    [RequireComponent(typeof(ComboInput.ComboInput))]
+    [RequireComponent(typeof(Combo.Combo))]
+    [RequireComponent(typeof(Attack.Attack))]
     public class ComboManager : MonoBehaviour
     {
         [Header("Inputs")]
