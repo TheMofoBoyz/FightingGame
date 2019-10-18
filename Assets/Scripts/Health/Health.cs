@@ -5,15 +5,24 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int _playerHealth;
+    public float _playerHealth;
 
     [SerializeField]
     private Image _hpBar;
     [SerializeField]
+    private Text _hpText;
+    [SerializeField]
     private float _barSpeed;
+
+    private float _fillamount;
 
     private int _maxPlayerHealth = 100;
     private int _minPlayerHealth = 0;
+
+    private float map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
 
     void Start()
     {
@@ -21,54 +30,79 @@ public class Health : MonoBehaviour
         UpdateHealth(_playerHealth);
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             DecreaseHealth(10);
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) 
+        if (Input.GetKeyDown(KeyCode.X))
         {
             IncreaseHealth(10);
         }
 
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
             ResetHealth();
         }
     }
 
-    public void DecreaseHealth(int amount) 
+    public void DecreaseHealth(int amount)
     {
-        if (_playerHealth <= _minPlayerHealth) 
+        if (_playerHealth - amount < _minPlayerHealth)
         {
             _playerHealth = _minPlayerHealth;
-        }
+            UpdateHealth(_minPlayerHealth);
 
-        UpdateHealth(_playerHealth -= amount);
+
+        }
+        else
+        {
+            UpdateHealth(_playerHealth -= amount);
+        }
     }
 
-    public void IncreaseHealth(int amount) 
+    public void IncreaseHealth(int amount)
     {
-        if (_playerHealth >= _maxPlayerHealth) 
+        if (_playerHealth + amount > _maxPlayerHealth)
         {
             _playerHealth = _maxPlayerHealth;
+            UpdateHealth(_maxPlayerHealth);
         }
-        
-        UpdateHealth(_playerHealth += amount);
+        else
+        {
+            UpdateHealth(_playerHealth += amount);
+        }
     }
 
-    public void ResetHealth() 
+    public void ResetHealth()
     {
         _playerHealth = _maxPlayerHealth;
         UpdateHealth(_maxPlayerHealth);
     }
 
-    public void UpdateHealth(int newPlayerHealth) 
+    public void UpdateHealth(float newPlayerHealth)
     {
-        _hpBar.fillAmount = Mathf.Lerp(_playerHealth / 100, newPlayerHealth / 100, _barSpeed * Time.deltaTime);
+        float _fillRatio = _barSpeed * Time.deltaTime;
+        float _currentXValue = _playerHealth;
+        float _newXValue = map(_currentXValue, 0, _maxPlayerHealth, 0, 1);
+
+        if (newPlayerHealth != _hpBar.fillAmount)
+        {
+            _hpBar.fillAmount = map(_currentXValue, 0, _maxPlayerHealth, 0, 1);
+            _playerHealth = newPlayerHealth;
+            _hpText.text = newPlayerHealth * 100 / _maxPlayerHealth + "%";
+
+        }
+
         _playerHealth = newPlayerHealth;
         Debug.Log("newhealth: " + newPlayerHealth);
         Debug.Log("healthbarstatus: " + _hpBar.fillAmount);
+    }
+
+    private void OnHPEmpty()
+    {
+        BroadcastMessage("OnDeath");
     }
 }

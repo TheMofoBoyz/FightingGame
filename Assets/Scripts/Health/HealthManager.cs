@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject _player1;
+    private GameObject _player2;
+
+    private void Start()
     {
-        
+        _player1 = GameObject.Find("Player1");
+        _player2 = GameObject.Find("Player2");
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnDamage(GameObject target, int amount)
     {
-        
+
+    }
+
+    public void OnHeal(GameObject target, int amount)
+    {
+           
     }
 }

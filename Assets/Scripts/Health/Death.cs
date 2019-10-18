@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int _matchNum;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private GameObject _player;
+
+    public void OnDeath()
     {
-        
+        //play death animation.
+        gameObject.BroadcastMessage("IncreaseMatch", _player.name, (UnityEngine.SendMessageOptions)1);
     }
 }
