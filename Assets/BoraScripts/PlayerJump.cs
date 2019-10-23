@@ -9,8 +9,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     float jumpForce;
 
-    private bool isGrounded;
-    private float translation;
+    private bool onGround;
 
     Rigidbody rb;
 
@@ -18,22 +17,24 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == ("Ground"))
-        {
-            isGrounded = true;
-        }
+        onGround = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        translation = Input.GetAxis(_jumpButton) * jumpForce;
+       // if (Input.GetAxis(_jumpButton) && onGround == true)
+        {
+            rb.velocity = new Vector3(0f, jumpForce, 0f);
+            onGround = false;
+        }
+    }
 
-        translation *= Time.deltaTime;
-        transform.position += new Vector3(0, translation, 0);
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
     }
 }

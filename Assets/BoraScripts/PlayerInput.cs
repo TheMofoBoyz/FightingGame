@@ -6,14 +6,18 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField]
     private string _cHorizontal;
+    public bool walkRight = Input.GetKeyDown(KeyCode.D);
     [SerializeField]
     float moveSpeed;
 
+    private Animator anim;
+  
     private float translation;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         
     }
 
@@ -26,5 +30,10 @@ public class PlayerInput : MonoBehaviour
         Vector3 clampedPosition = transform.position;
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, 0f, 1.5f);
         transform.position = clampedPosition;
+
+        if (Input.anyKeyDown.Equals(walkRight))
+        {
+            anim.Play("Player_Walk_Forward");
+        }
     }
 }
