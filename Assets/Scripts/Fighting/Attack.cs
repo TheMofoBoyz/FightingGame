@@ -5,12 +5,20 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public Collider[] attackHitboxes;
+    public GameObject playerAnimator;
+    private Animator _anim;
+
+    private void Start()
+    {
+        _anim = playerAnimator.GetComponent<Animator>();
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             LaunchAttack(attackHitboxes[0]);
+            PlayAnimation("Player_Punch");
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -31,24 +39,31 @@ public class Attack : MonoBehaviour
                 continue;
             }
 
-                Debug.Log(c.name);
+            Debug.Log(c.name);
 
-                float damage = 0;
+            float damage = 0;
 
-                switch (c.name)
-                {
-                    case "Head":
-                    damage = 30;
-                    break;
+            switch (c.name)
+            {
+                case "Head":
+                damage = 30;
+                break;
 
-                    case "Torso":
-                    damage = 15;
-                    break;
+                case "Torso":
+                damage = 15;
+                break;
 
-                default:
-                    Debug.Log("The Collider "+ c.name + " Did not match with switch cases. be sure the name is correct");
-                    break;
-                }
+            default:
+                Debug.Log("The Collider "+ c.name + " Did not match with switch cases. be sure the name is correct");
+                break;
+            }
+
+            c.SendMessageUpwards("DecreaseHealth", damage);
         }
+    }
+
+    private void PlayAnimation(string anim)
+    {
+        _anim.Play(anim);
     }
 }

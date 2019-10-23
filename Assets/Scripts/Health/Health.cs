@@ -14,6 +14,9 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float _barSpeed;
 
+    public GameObject playerAnimator;
+    private Animator _anim;
+
     private float _fillamount;
 
     private int _maxPlayerHealth = 100;
@@ -28,19 +31,20 @@ public class Health : MonoBehaviour
     {
         _playerHealth = _maxPlayerHealth;
         UpdateHealth(_playerHealth);
+        _anim = playerAnimator.GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            DecreaseHealth(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    DecreaseHealth(10);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            IncreaseHealth(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    IncreaseHealth(10);
+        //}
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -54,8 +58,6 @@ public class Health : MonoBehaviour
         {
             _playerHealth = _minPlayerHealth;
             UpdateHealth(_minPlayerHealth);
-
-
         }
         else
         {
@@ -97,12 +99,19 @@ public class Health : MonoBehaviour
         }
 
         _playerHealth = newPlayerHealth;
+
+        if (System.Math.Abs(_hpBar.fillAmount) < 0.1f)
+        {
+            OnHPEmpty();
+        }
         Debug.Log("newhealth: " + newPlayerHealth);
         Debug.Log("healthbarstatus: " + _hpBar.fillAmount);
     }
 
     private void OnHPEmpty()
     {
+        _anim.Play("Player_Death");
+
         BroadcastMessage("OnDeath");
     }
 }
