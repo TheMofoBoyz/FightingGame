@@ -643,9 +643,6 @@ MonoBehaviour:
   _hpBar: {fileID: 9086651}
   _hpText: {fileID: 1117313473}
   _barSpeed: 2
-  _fillamount: 0
-  _maxPlayerHealth: 100
-  _minPlayerHealth: 0
 --- !u!4 &1436903384
 Transform:
   m_ObjectHideFlags: 0
@@ -672,7 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbea6510d84b6e4e9952269d9c3461c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _matchNum: 0
   _player: {fileID: 0}
 --- !u!114 &1436903386
 MonoBehaviour:
@@ -686,8 +682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb34bb1abec7074693644643e19ecd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player1: {fileID: 0}
-  _player2: {fileID: 0}
 --- !u!1 &1467171641
 GameObject:
   m_ObjectHideFlags: 0
